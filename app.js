@@ -6,7 +6,10 @@ const vm = Vue.createApp({
       lastName: 'Brats',
       url: 'https://google.com',
       raw_url: '<a href="https://google.com" target="blank">Google</a>',
-      age: 20
+      age: 20,
+      isPurple: false,
+      selectedColor: '',
+      size: 150
     }
   },
   methods: {
@@ -29,6 +32,9 @@ const vm = Vue.createApp({
       console.log('full name computed property was called')
     
       return `${this.firstName} ${this.middleName} ${this.lastName.toUpperCase()}`
+    },
+    circle_classes() {
+      return { purple: this.isPurple }
     }
   },
   watch: {
