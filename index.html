@@ -7,6 +7,19 @@
   <body>
     <div id="app" v-cloak>  
       <p>{{ fullName }}</p>
+
+      <p v-if="mode == 1">Showing v-if directive content</p>
+      <p v-else-if="mode == 2">v-else-if</p>
+      <p v-else>v-else</p>
+
+      <i v-show="mode == 1">v-show</i>
+
+      <select v-model="mode">
+        <option value="1">v-if</option>
+        <option value="2">else if</option>
+        <option value="3">else</option>
+      </select>
+
       <label>
         <input type="checkbox" v-model="isPurple" /> Purple
       </label>
@@ -17,9 +30,13 @@
         <option value="text-orange">Orange</option>
       </select>
 
+      <label>Size</label>
       <input type="number" v-model="size" />
+      
+      <label>Rotation</label>
+      <input type="number" v-model="rotation" />
 
-      <div class="circle" :class="[selectedColor, circle_classes]" :style="{ width: size + 'px', height: size + 'px', lineHeight: size + 'px' }">
+      <div class="circle" :class="[selectedColor, circle_classes]" :style="[size, rotate_circle]">
         Hi!
       </div>
 
@@ -42,7 +59,28 @@
 
       <button type="button" @click="increment">Increment</button>
       <button type="button" @click="decrement">Decrement</button>
+
+      <ul>
+        <li v-for="(bird, index) in birds" :class="birds" :key="bird">{{ bird }} - {{ index }}</li>
+      </ul>
+
+      <ul>
+        <li v-for="person in people" :class="person">
+          <div v-for="(value, key) in person">{{key}}: {{value}}</div>
+          
+        </li>
+      </ul>
+
+
+      <button type="button" class="move" @click="move">rotate cards</button>
+      <div class="card" v-for="person in people" :key="person.name">
+        <h3>{{person.name}}</h3>
+        <p>{{person.age}}</p>
+        <input type="text" />
+      </div>
+
     </div>
+
   
     <script src="https://unpkg.com/vue@next"></script>
     <script src="app.js"></script>

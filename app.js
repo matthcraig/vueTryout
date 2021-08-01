@@ -9,7 +9,17 @@ const vm = Vue.createApp({
       age: 20,
       isPurple: false,
       selectedColor: '',
-      size: 150
+      size: 150,
+      rotation: 0,
+      mode: 1,
+      birds: ['Pigeons', 'Eagles', 'Doves', 'Parrots'],
+      people: [
+        {name: 'John', age: 20},
+        {name: 'Rick', age: 78},
+        {name: 'Amy', age: 33},
+        {name: 'Jerry', age: 44},
+        {name: "Keri", age: 51}
+      ]
     }
   },
   methods: {
@@ -25,6 +35,11 @@ const vm = Vue.createApp({
     },
     updateMiddleName(event) {
       this.middleName = event.target.value;
+    },
+    move(){
+      const first = this.people.shift()
+
+      this.people.push(first)
     }
   },
   computed: {
@@ -35,6 +50,12 @@ const vm = Vue.createApp({
     },
     circle_classes() {
       return { purple: this.isPurple }
+    },
+    size(){
+      return { width: size + 'px', height: size + 'px', lineHeight: size + 'px' }
+    },
+    rotate_circle(){
+      return { transform: 'rotate(30deg)' }
     }
   },
   watch: {
